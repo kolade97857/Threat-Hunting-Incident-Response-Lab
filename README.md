@@ -152,9 +152,9 @@ threat-hunting-incident-response-lab/
     └── 05-policy-and-signature-verification/
 ```
 
-## Publishing to GitHub
+## Repository publication and Privacy
 
-The package includes an [upload guide](UPLOAD-TO-GITHUB.md) with Git and GitHub Desktop instructions. Review the lab identifiers shown in screenshots before publishing the repository publicly.
+This project is publicly hosted on GitHub. Supporting documentation includes instructions for repository management. Screenshots should be reviewed periodically to ensure that sensitive credentials or personal information are not exposed.
 
 ## Reproducing the lab
 
