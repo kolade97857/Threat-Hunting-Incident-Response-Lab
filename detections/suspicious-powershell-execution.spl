@@ -1,0 +1,15 @@
+/* DET-001: Suspicious PowerShell execution hunt
+   Event ID 4688; indicator-based search. Matches require analyst review. */
+
+index=main host="DESKTOP-T0FDBKJ" sourcetype="WinEventLog:Security" EventCode=4688
+| eval cmd=lower(Process_Command_Line)
+| where like(cmd,"%encodedcommand%")
+    OR like(cmd,"% -enc %")
+    OR like(cmd,"%windowstyle hidden%")
+    OR like(cmd,"%executionpolicy bypass%")
+    OR like(cmd,"%downloadstring%")
+    OR like(cmd,"%frombase64string%")
+| eval Detection_Name="Suspicious PowerShell Execution"
+| eval Severity="Medium"
+| table _time Detection_Name Severity Account_Name Creator_Process_ID Creator_Process_Name New_Process_ID New_Process_Name Process_Command_Line
+| sort -_time

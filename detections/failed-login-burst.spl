@@ -1,0 +1,17 @@
+/* DET-002: Failed-logon burst hunt
+   Event ID 4625; five or more failures in a five-minute host-level bucket.
+   NOTE: This version groups by host/time. Validate target-account field extraction
+   before treating it as a per-account brute-force detector. */
+
+index=main sourcetype="WinEventLog:Security" EventCode=4625
+| bin _time span=5m
+| stats count as failed_attempts
+        values(Account_Name) as account_context
+        values(Source_Network_Address) as source_ips
+        values(Status) as status_codes
+        values(Sub_Status) as substatus_codes
+        by host _time
+| where failed_attempts >= 5
+| eval Detection_Name="Failed Logon Burst"
+| eval Severity="Medium"
+| sort 0 -_time

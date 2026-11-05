@@ -1,0 +1,13 @@
+# OS/editor noise
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+
+# Splunk local/runtime data (do not commit)
+var/
+*.log
+*.idx
+*.dat
+*.journal

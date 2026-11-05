@@ -1,0 +1,4 @@
+index=main host="DESKTOP-T0FDBKJ" sourcetype="WinEventLog:Security" EventCode=4624 earliest="11/04/2026:09:05:00" latest="11/04/2026:09:20:00"
+| search "SOCTestUser"
+| table _time Account_Name TargetUserName Logon_Type Logon_Process Source_Network_Address
+| sort 0 _time

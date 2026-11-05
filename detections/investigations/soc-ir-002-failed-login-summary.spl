@@ -1,0 +1,4 @@
+index=main host="DESKTOP-T0FDBKJ" sourcetype="WinEventLog:Security" EventCode=4625 earliest="11/04/2026:09:05:00" latest="11/04/2026:09:20:00"
+| search "SOCTestUser"
+| stats count as failed_attempts min(_time) as first_attempt max(_time) as last_attempt values(Source_Network_Address) as source_ips values(Status) as status_codes values(Sub_Status) as substatus_codes by host
+| convert ctime(first_attempt) ctime(last_attempt)

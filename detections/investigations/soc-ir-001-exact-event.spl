@@ -1,0 +1,2 @@
+index=main host="DESKTOP-T0FDBKJ" sourcetype="WinEventLog:Security" EventCode=4688 RecordNumber=66675
+| table _time Account_Name Creator_Process_ID Creator_Process_Name New_Process_ID New_Process_Name Process_Command_Line RecordNumber
